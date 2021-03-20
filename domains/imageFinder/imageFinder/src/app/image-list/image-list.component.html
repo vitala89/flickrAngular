@@ -17,9 +17,9 @@
                 <div class="product-name">{{image.title | truncate:[20]}}</div>
               </div>
               <div class="product-list-action">
-                <p-chips separator="," placeholder="some tags?"></p-chips>
+                <p-chips [(ngModel)]="image.tags" separator="," placeholder="some tags?"></p-chips>
                 <div class="p-mb-2"></div>
-                <p-button class="p-ml-3" (click)="addToBookmark(image);showTopCenter();" label="Bookmark it"
+                <p-button class="p-ml-3" (click)="addToBookmark(image)" label="Bookmark it"
                           icon="pi pi-check"></p-button>
               </div>
             </div>
@@ -34,5 +34,4 @@
     </div>
   </ng-template>
 </div>
-
 <p-toast position="top-center" key="tc"></p-toast>

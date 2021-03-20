@@ -1,6 +1,6 @@
- export interface PhotoMainInfo {
+export interface PhotoMainInfo {
   id: string;
-  title:string;
+  title: string;
   url: string;
+  tags?: string[];
 }
-

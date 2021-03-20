@@ -8,11 +8,16 @@
               <div class="product-grid-item-content">
                 <img [src]="bookmark.url" [alt]="bookmark.title"/>
                 <div class="product-name">{{bookmark.title | truncate:[20]}}</div>
+                <div class="p-grid p-ml-2 p-mt-3 p-mb-3">
+                  <div *ngFor="let tag of bookmark.tags" class="badges p-ml-1 p-mb-1">
+                    <p-badge [value]="tag" styleClass="p-mr-2"></p-badge>
+                  </div>
+                </div>
               </div>
               <div class="product-list-action">
-                <p-chips separator="," placeholder="some tags?"></p-chips>
                 <div class="p-mb-2"></div>
-                <p-button (click)="deleteBookmark(bookmark);" styleClass="p-button-danger p-ml-3" label="Delete" icon="pi pi-trash"></p-button>
+                <p-button (click)="deleteBookmark(bookmark);" styleClass="p-button-danger p-ml-3" label="Delete"
+                          icon="pi pi-trash"></p-button>
               </div>
             </div>
           </div>
@@ -22,7 +27,8 @@
   </div>
   <ng-template #empty>
     <div class="p-text-center">
-      <h2>No image here. Would you try to search for anything else</h2>
+      <h2>No image here.</h2>
     </div>
   </ng-template>
 </div>
+<p-toast position="top-center" key="tc"></p-toast>

@@ -11,17 +11,11 @@ import {PhotoMainInfo} from "../interfaces/photoMainInfo";
   providedIn: 'root'
 })
 export class FlickrService {
-  private bookmarksUrl = 'api/bookmarks';
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-  items = [];
   constructor(private http: HttpClient) {
-
   }
 
   searchKeyword(keyword: string): Observable<PhotoMainInfo[]> {
-    const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
+    const url = ('https://www.flickr.com/services/rest/?method=flickr.photos.search&');
     const params = `api_key=${environment.flickr.key}&text=${keyword}&format=json&nojsoncallback=1&per_page=120`;
     return this.http.get<FlickrOutput>(url + params).pipe(map((res) => {
       const urlArr: any[] = [];
@@ -37,21 +31,35 @@ export class FlickrService {
       return urlArr;
     }));
   }
+
   addBookmark(bookmark: PhotoMainInfo): void {
-    debugger;
-    const bookmarks = JSON.parse(<string>localStorage.getItem('bookmarks')) || [];
-    localStorage.setItem("bookmarks", JSON.stringify(bookmarks.push(bookmark)));
+    let bookmarks = [];
+    const bookmarksFromLocalStorage = localStorage.getItem('bookmarks');
+    if (bookmarksFromLocalStorage !== null) {
+      bookmarks = JSON.parse(bookmarksFromLocalStorage);
+    }
+    bookmarks.push(bookmark);
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
   }
-  getBookmarks(): Observable<PhotoMainInfo[]> {
-    return this.http.get<PhotoMainInfo[]>(this.bookmarksUrl)
+
+  getBookmarks() {
+    let bookmarks = [];
+    const bookmarksFromLocalStorage = localStorage.getItem('bookmarks');
+    if (bookmarksFromLocalStorage !== null) {
+      bookmarks = JSON.parse(bookmarksFromLocalStorage);
+    }
+    return bookmarks;
   }
-  getItems() {
-    return this.items;
-  }
+
   deleteBookmark(bookmark: PhotoMainInfo) {
-    const id = bookmark.id;
-    const url = `${this.bookmarksUrl}/${id}`;
-    return this.http.delete<PhotoMainInfo>(url, this.httpOptions);
+    let bookmarks = [];
+    const bookmarksFromLocalStorage = localStorage.getItem('bookmarks');
+    if (bookmarksFromLocalStorage !== null) {
+      bookmarks = JSON.parse(bookmarksFromLocalStorage);
+    }
+    bookmarks = bookmarks.filter((item: any) => item.id !== bookmark.id);
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+
   }
 
 }

@@ -13,6 +13,7 @@ import {MessageService} from "primeng/api";
   providers: [MessageService]
 })
 export class ImageListComponent implements OnInit {
+  bookImageChips = new FormControl('');
   totalRecords: number = 0;
   images: PhotoMainInfo[] = [];
   bookmark: PhotoMainInfo[] = [];
@@ -22,6 +23,7 @@ export class ImageListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.bookImageChips.valueChanges.subscribe();
     this.searchControl.valueChanges.pipe(
       debounceTime(500),
       filter((value) => value.length > 0),
@@ -30,12 +32,14 @@ export class ImageListComponent implements OnInit {
       })).subscribe((data) => {
       this.images = data;
     });
-
     this.totalRecords = this.images.length;
   }
+
   addToBookmark(image: any) {
     this.flickrService.addBookmark(image);
+    this.showTopCenter();
   }
+
   showTopCenter() {
     this.messageService.add({key: 'tc', severity: 'success', summary: 'Image saved to Bookmarks!'});
   }
