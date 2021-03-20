@@ -15,6 +15,7 @@ export class BookmarksComponent implements OnInit {
   ngOnInit(): void {
     this.getBookmarks()
   }
+
   getBookmarks(): void {
     this.flickrService.getBookmarks()
       .subscribe(bookmarks => this.bookmarks = bookmarks);

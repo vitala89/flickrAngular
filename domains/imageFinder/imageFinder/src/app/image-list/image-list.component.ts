@@ -30,6 +30,7 @@ export class ImageListComponent implements OnInit {
       })).subscribe((data) => {
       this.images = data;
     });
+
     this.totalRecords = this.images.length;
   }
   addToBookmark(image: any) {

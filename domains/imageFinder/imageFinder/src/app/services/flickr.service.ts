@@ -17,6 +17,7 @@ export class FlickrService {
   };
   items = [];
   constructor(private http: HttpClient) {
+
   }
 
   searchKeyword(keyword: string): Observable<PhotoMainInfo[]> {
