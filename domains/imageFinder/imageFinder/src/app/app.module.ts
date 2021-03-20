@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
-import { MainLayoutComponent } from './main-layout/main-layout.component';
-import { ImageListComponent } from './image-list/image-list.component';
+import {MainLayoutComponent} from './main-layout/main-layout.component';
+import {ImageListComponent} from './image-list/image-list.component';
 import {MenubarModule} from "primeng/menubar";
 import {SharedModule} from "primeng/api";
 import {AvatarModule} from "primeng/avatar";
@@ -16,10 +16,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {ChipsModule} from "primeng/chips";
 import {PaginatorModule} from "primeng/paginator";
 import {DataViewModule} from "primeng/dataview";
-import { BookmarksComponent } from './bookmarks/bookmarks.component';
-import { TruncatePipe } from './pipes/truncate.pipe';
+import {BookmarksComponent} from './bookmarks/bookmarks.component';
+import {TruncatePipe} from './pipes/truncate.pipe';
 import {ToastModule} from "primeng/toast";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BadgeModule} from "primeng/badge";
 
 @NgModule({
   declarations: [
@@ -45,9 +46,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     PaginatorModule,
     DataViewModule,
     ToastModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
