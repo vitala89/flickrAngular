@@ -16,7 +16,7 @@
                 <img [src]="image.url" [alt]="image.title"/>
                 <div class="product-name">{{image.title | truncate:[20]}}</div>
               </div>
-              <div class="product-list-action">
+              <div  class="product-list-action">
                 <p-chips [(ngModel)]="image.tags" separator="," placeholder="some tags?"></p-chips>
                 <div class="p-mb-2"></div>
                 <p-button class="p-ml-3" (click)="addToBookmark(image)" label="Bookmark it"

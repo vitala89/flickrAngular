@@ -6,7 +6,14 @@
           <h2>Image Finder</h2>
         </ng-template>
         <ng-template pTemplate="end">
-          <p-avatar icon="pi pi-user" styleClass="p-mr-2" size="xlarge" shape="circle"></p-avatar>
+          <div *ngIf="!isLoggedin" class="p-d-flex">
+          <button pButton pRipple type="button" (click)="loginWithFacebook()" label="Signin with Facebook" class="p-button-raised p-button-info"></button>
+          </div>
+          <div *ngIf="isLoggedin === true" class="p-d-flex p-align-center">
+            <button pButton pRipple type="button" (click)="signOut()" label="Signout" class="p-button-raised p-button-info"></button>
+            <span>{{socialUser.firstName}}</span>
+            <p-avatar image="{{socialUser.photoUrl}}" styleClass="p-mr-2" size="xlarge" shape="circle"></p-avatar>
+          </div>
         </ng-template>
       </p-menubar>
     </div>
@@ -23,7 +30,6 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-
   <div class="footer p-d-flex p-justify-center">
     <p>
       Copyright "ImageFinder"
